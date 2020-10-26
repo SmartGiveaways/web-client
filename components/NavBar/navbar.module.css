@@ -1,0 +1,28 @@
+.navbar {
+  display: flex;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #717171;
+}
+
+.navbar a {
+  margin-left: 25px;
+}
+
+.navbar a:hover {
+  opacity: 0.7;
+}
+
+.soon_badge {
+  margin-left: 5px;
+  font-size: 12px;
+  padding: 2px 5px 2px 5px;
+  color: #ff6bb2;
+  border: #ff6bb2 2px solid;
+  border-radius: 20px;
+}
+
+.discover_coming_soon {
+  display: flex;
+  align-items: center;
+}
