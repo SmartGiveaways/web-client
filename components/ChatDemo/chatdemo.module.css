@@ -20,8 +20,11 @@
   background: #313131;
 }
 
-.input span {
+.input_text {
   margin-left: 15px;
+  height: 100%;
+  width: 100%;
+  color: white;
 }
 
 .extensions_button {
@@ -42,7 +45,10 @@
 
 .dialogue {
   padding: 40px;
+  height: 390px;
+  overflow: hidden;
   color: white;
+  background: red;
 }
 
 .message {
@@ -59,7 +65,7 @@
 
 .message_top span:first-child {
   font-size: 18px;
-  color: #777777;
+  color: #969696;
 }
 
 .message_top span:last-child {
@@ -72,4 +78,57 @@
   margin-top: 5px;
   font-size: 16px;
   color: #d1d2d5;
+}
+
+.waiting {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 95%;
+  left: 10%;
+  margin-left: 5px;
+  color: white;
+}
+
+.waiting p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.waiting span {
+  font-weight: bold;
+}
+
+.waiting_dot {
+  width: 6px;
+  height: 6px;
+  margin-right: 4px;
+  border-radius: 50px;
+  opacity: 0;
+  background: white;
+  animation: loadingFade 1s infinite;
+}
+
+.waiting_dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.waiting_dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.waiting_dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes loadingFade {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }
