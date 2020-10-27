@@ -19,7 +19,7 @@ const Index = () => {
             <span>Smart</span>
             <span>Giveaways</span>
           </div>
-          <p>Thinking...</p>
+          <p>Take back control of your giveaways and reward those who truly deserve it.</p>
           <div className={styles.get_started}>Get Started</div>
         </div>
         <div className={styles.right_container}>
