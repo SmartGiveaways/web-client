@@ -6,13 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './chatdemo.module.css';
+import { EWOULDBLOCK } from 'constants';
 
 const timeout = (delay: number) => {
   return new Promise(resolve => setTimeout(resolve, delay));
 }
 
 interface Input {
-  id: number;
+  id: string;
   name: string;
   message: string;
   time: string;
@@ -22,6 +23,7 @@ const ChatDemo = ({}) => {
   const [waiting, setWaiting] = useState<boolean>(false);
   const [dialogue, setDialogue] = useState<Input[]>([]);
   const [stage, setStage] = useState<number>(0);
+  const dialogueRef = useRef(null);
 
   const addToDialogue = (input: Input) => {
     setDialogue(oldDialogue => [...oldDialogue, input])
@@ -30,7 +32,9 @@ const ChatDemo = ({}) => {
   const animateTyping = (text: string, callback: () => void) => {
     return (
       <Typing onFinishedTyping={callback} speed={100} hideCursor>
-        <span className={styles.input_text}>{text}</span>
+        <div className={styles.input_text_container}>
+          <div className={styles.input_text}>{text}</div>
+        </div>
         <Typing.Reset delay={200} />
       </Typing>
     );
@@ -38,7 +42,7 @@ const ChatDemo = ({}) => {
 
   const jimboMessage = (message: string) => {
     addToDialogue({
-      id: 1,
+      id: message,
       name: "Jimbo",
       message: message,
       time: "00:06 AM"
@@ -50,17 +54,23 @@ const ChatDemo = ({}) => {
     return timeout(2000).then(() => {
       setWaiting(false);
       addToDialogue({
-          id: 2,
+          id: "response",
           name: "Bot",
           message: "response",
           time: "00:06 AM"
       });
+      scrollDialogue();
     });
+  }
+
+  const scrollDialogue = () => {
+    const { current } = dialogueRef;
+    current.scrollTop = current.scrollHeight;
   }
 
   return (
     <div className={styles.container}>
-      <div className={styles.dialogue}>
+      <div className={styles.dialogue} ref={dialogueRef}>
         {dialogue.map(input => {
           const {id, name, message, time} = input;
           return <div key={id} className={styles.message} > 
@@ -79,7 +89,7 @@ const ChatDemo = ({}) => {
         <div className={styles.extensions_button}>
           <FontAwesomeIcon className={styles.extensions_button_icon} icon={faPlus} />
         </div>
-        {stage === 0 && animateTyping(">presets list", async () => {
+        {stage === 0 && animateTyping(">presets list ", async () => {
             jimboMessage(">presets list");
             await botMessage();
             await timeout(500);
@@ -91,8 +101,8 @@ const ChatDemo = ({}) => {
             await timeout(500);
             setStage(2);
         })}
-        {stage === 2 && animateTyping(">g create test 1day #giveaways 2 Discord Nitro Giveaway", async () => {
-            jimboMessage(">g create test 1day #giveaways 2 Discord Nitro Giveaway");
+        {stage === 2 && animateTyping(">g create test 1day #giveaways 2 Nitro Giveaway", async () => {
+            jimboMessage(">g create test 1day #giveaways 2 Nitro Giveaway");
             await botMessage();
             await botMessage();
             await timeout(5000);

@@ -20,10 +20,19 @@
   background: #313131;
 }
 
+.input_text_container {
+  height: 30px;
+  width: 220px;
+  line-height: 30px;
+  margin-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .input_text {
-  margin-left: 15px;
-  height: 100%;
-  width: 100%;
+  float: right;
+  min-width: 100%;
   color: white;
 }
 
@@ -45,10 +54,9 @@
 
 .dialogue {
   padding: 40px;
-  height: 390px;
+  height: 420px;
   overflow: hidden;
   color: white;
-  background: red;
 }
 
 .message {
@@ -75,6 +83,7 @@
 }
 
 .message_bottom {
+  width: 200px;
   margin-top: 5px;
   font-size: 16px;
   color: #d1d2d5;
