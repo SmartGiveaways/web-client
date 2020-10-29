@@ -53,6 +53,7 @@ const ChatDemo = ({}) => {
         message: message,
         time: "00:06 AM"
       });
+      scrollToBottom();
     } else {
       setWaiting(true);
       return timeout(2000).then(() => {
