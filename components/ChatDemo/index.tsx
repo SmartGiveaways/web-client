@@ -6,16 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './chatdemo.module.css';
-import { EWOULDBLOCK } from 'constants';
 
 const timeout = (delay: number) => {
   return new Promise(resolve => setTimeout(resolve, delay));
 }
 
 interface Input {
-  id: string;
+  id: number;
   name: string;
-  message: string;
+  message: string | JSX.Element;
   time: string;
 }
 
@@ -40,30 +39,52 @@ const ChatDemo = ({}) => {
     );
   }
 
-  const jimboMessage = (message: string) => {
-    addToDialogue({
-      id: message,
-      name: "Jimbo",
-      message: message,
-      time: "00:06 AM"
-    });
-  }
-  
-  const botMessage = () => {
-    setWaiting(true);
-    return timeout(2000).then(() => {
-      setWaiting(false);
-      addToDialogue({
-          id: "response",
-          name: "Bot",
-          message: "response",
-          time: "00:06 AM"
-      });
-      scrollDialogue();
-    });
+  const input = {
+    JIMBO: 1,
+    BOT: 2,
   }
 
-  const scrollDialogue = () => {
+  const message = (input, message: JSX.Element) => {
+    const id = Math.random() * 1000;
+    if (input === 1) {
+      addToDialogue({
+        id,
+        name: "Jimbo",
+        message: message,
+        time: "00:06 AM"
+      });
+    } else {
+      setWaiting(true);
+      return timeout(2000).then(() => {
+        setWaiting(false);
+        addToDialogue({
+            id,
+            name: "Bot",
+            message,
+            time: "00:06 AM"
+        });
+        scrollToBottom();
+      });
+    }
+  }
+
+  const embed = (title: string, children: JSX.Element): JSX.Element => {
+    return (
+      <div className={styles.message_bottom + " " + styles.embed}>
+        <div className={styles.embed_bar} />
+        <div className={styles.embed_content}>
+          <h1>{title}</h1>
+          {children}
+        </div>
+      </div>
+    );
+  }
+
+  const highlight = (text: string) => {
+    return <span style={{color: '#ff6bb2', background: 'rgba(255, 107, 178, 0.3)'}}>{text}</span>;
+  }
+
+  const scrollToBottom = () => {
     const { current } = dialogueRef;
     current.scrollTop = current.scrollHeight;
   }
@@ -80,7 +101,7 @@ const ChatDemo = ({}) => {
                 <span>{name}</span>
                 <span>Today at {time}</span>
               </div>
-              <p className={styles.message_bottom}>{message}</p>
+              { (true) ? <div className={styles.message_bottom}>{message}</div> : message }
             </div>
           </div>
         })}
@@ -90,21 +111,42 @@ const ChatDemo = ({}) => {
           <FontAwesomeIcon className={styles.extensions_button_icon} icon={faPlus} />
         </div>
         {stage === 0 && animateTyping(">presets list ", async () => {
-            jimboMessage(">presets list");
-            await botMessage();
+            message(input.JIMBO, <p>&gt;presets list</p>);
+            await message(input.BOT, embed("Current Presets (1)", (
+              <div>
+                <p>default - This cannot be removed</p>
+                <p>test</p>
+              </div>
+            )));
             await timeout(500);
             setStage(1);
         })}
         {stage === 1 && animateTyping(">giveaway", async () => {
-            jimboMessage(">giveaway");
-            await botMessage();
+            message(input.JIMBO, <p>&gt;giveaway</p>);
+            await message(input.BOT, embed("Smart Giveaways Help", (
+              <div>
+                <p style={{fontWeight: 'bold', color: 'white', fontSize: '13px'}}>General Commands</p>
+                <p>&gt;entries</p>
+                <p style={{fontWeight: 'bold', color: 'white', fontSize: '13px'}}>Admin Commands</p>
+                <p style={{marginBottom: '5px'}}>&gt;giveaway create</p>
+                <p>&gt;preset list</p>
+                <p>&gt;preset create</p>
+                <p>&gt;preset settings</p>
+                <p style={{marginBottom: '5px'}}>&gt;preset set</p>
+                <p>&gt;gban</p>
+                <p>&gt;gsban</p>
+                <p>&gt;gunban</p>
+              </div>
+            )));
             await timeout(500);
             setStage(2);
         })}
         {stage === 2 && animateTyping(">g create test 1day #giveaways 2 Nitro Giveaway", async () => {
-            jimboMessage(">g create test 1day #giveaways 2 Nitro Giveaway");
-            await botMessage();
-            await botMessage();
+            message(input.JIMBO, <p>&gt;g create test 1day {highlight("#giveaways")} 2 Nitro Giveaway</p>);
+            await message(input.BOT, <p>Created your giveaway in {highlight("#giveaways")}</p>);
+            await message(input.BOT, embed("Giveaway: Nitro Giveaway", (
+              <p>Ends in 23 hours 59 minutes with 2 winners</p>
+            )));
             await timeout(5000);
             setStage(0);
             setDialogue([]);
