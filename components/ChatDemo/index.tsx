@@ -130,10 +130,7 @@ const ChatDemo = ({}) => {
                 <p>&gt;entries</p>
                 <p style={{fontWeight: 'bold', color: 'white', fontSize: '13px'}}>Admin Commands</p>
                 <p style={{marginBottom: '5px'}}>&gt;giveaway create</p>
-                <p>&gt;preset list</p>
-                <p>&gt;preset create</p>
-                <p>&gt;preset settings</p>
-                <p style={{marginBottom: '5px'}}>&gt;preset set</p>
+                <p style={{marginBottom: '5px'}}>&gt;preset</p>
                 <p>&gt;gban</p>
                 <p>&gt;gsban</p>
                 <p>&gt;gunban</p>
