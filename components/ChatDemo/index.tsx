@@ -102,7 +102,7 @@ const ChatDemo = ({}) => {
                 <span>{name}</span>
                 <span>Today at {time}</span>
               </div>
-              { (true) ? <div className={styles.message_bottom}>{message}</div> : message }
+              <div className={styles.message_bottom}>{message}</div>
             </div>
           </div>
         })}
