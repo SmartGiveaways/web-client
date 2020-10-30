@@ -10,7 +10,11 @@ const Index = () => {
     <>
       <Head>
         <title>Smart Giveaways</title>
-        <link rel='icon' href='/favicon.ico' />
+          <link rel="icon" sizes="64x64" href="/favicon.ico" />
+          <link rel="icon" type="image/png" sizes="196x196" href="/icon-192.png" />
+          <link rel="icon" type="image/png" sizes="64x64" href="/icon-64.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png" />
       </Head>
       <NavBar />
       <div className={styles.container}>

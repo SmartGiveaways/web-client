@@ -5,7 +5,7 @@ import styles from './navbar.module.css';
 const NavBar = ({}) => {
   return (
     <nav className={styles.navbar}>
-      <Link href="/"><img src="/logo.png" alt="logo" /></Link>
+      <Link href="/"><img src="/icon-64.png" alt="logo" /></Link>
       <Link href="/donate"><a>Donate</a></Link>
       <Link href="/support"><a>Support</a></Link>
       <Link href="/docs"><a>Docs</a></Link>
