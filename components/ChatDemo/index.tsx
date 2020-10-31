@@ -56,7 +56,7 @@ const ChatDemo = ({}) => {
       scrollToBottom();
     } else {
       setWaiting(true);
-      return timeout(2000).then(() => {
+      return timeout(1500).then(() => {
         setWaiting(false);
         addToDialogue({
             id,
@@ -140,12 +140,12 @@ const ChatDemo = ({}) => {
             setStage(2);
         })}
         {stage === 2 && animateTyping(">g create test 1day #giveaways 2 Nitro Giveaway", async () => {
-            message(input.JIMBO, <p>&gt;g create test 1day {highlight("#giveaways")} 2 Nitro Giveaway</p>);
+            await message(input.JIMBO, <p>&gt;g create test 1day {highlight("#giveaways")} 2 Nitro Giveaway</p>);
             await message(input.BOT, <p>Created your giveaway in {highlight("#giveaways")}</p>);
             await message(input.BOT, embed("Giveaway: Nitro Giveaway", (
               <p>Ends in 23 hours 59 minutes with 2 winners</p>
             )));
-            await timeout(5000);
+            await timeout(10000);
             setStage(0);
             setDialogue([]);
         })}
