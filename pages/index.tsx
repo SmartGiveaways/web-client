@@ -1,9 +1,9 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-import NavBar from '../components/NavBar';
-import ChatDemo from '../components/ChatDemo';
+import NavBar from "../components/NavBar";
+import ChatDemo from "../components/ChatDemo";
 
-import styles from '../styles/index.module.css';
+import styles from "../styles/index.module.css";
 
 const Index = () => {
   return (

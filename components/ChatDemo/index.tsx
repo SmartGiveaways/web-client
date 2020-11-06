@@ -1,11 +1,10 @@
-import {useRef, useState} from 'react';
+import {useRef, useState} from "react";
 
-import Typing from 'react-typing-animation';
+import Typing from "react-typing-animation";
 
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlus} from '@fortawesome/free-solid-svg-icons';
-
-import styles from './chatdemo.module.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import styles from "./chatdemo.module.css";
 
 const timeout = (delay: number) => {
   return new Promise((resolve) => {
@@ -27,7 +26,7 @@ const ChatDemo = ({}) => {
   const dialogueRef = useRef(null);
 
   const addToDialogue = (input: Input) => {
-    setDialogue(oldDialogue => [...oldDialogue, input])
+    setDialogue((oldDialogue) => [...oldDialogue, input]);
   }
 
   const animateTyping = (text: string, callback: () => void) => {
@@ -52,8 +51,8 @@ const ChatDemo = ({}) => {
       addToDialogue({
         id,
         message,
-        name: 'Jimbo',
-        time: '00:06 AM',
+        name: "Jimbo",
+        time: "00:06 AM",
       });
       scrollToBottom();
     } else {
@@ -63,8 +62,8 @@ const ChatDemo = ({}) => {
         addToDialogue({
           id,
           message,
-          name: 'Bot',
-          time: '00:06 AM',
+          name: "Bot",
+          time: "00:06 AM",
         });
         scrollToBottom();
       });
@@ -73,7 +72,7 @@ const ChatDemo = ({}) => {
 
   const embed = (title: string, children: JSX.Element): JSX.Element => {
     return (
-      <div className={styles.message_bottom + ' ' + styles.embed}>
+      <div className={styles.message_bottom + " " + styles.embed}>
         <div className={styles.embed_bar}/>
         <div className={styles.embed_content}>
           <h1>{title}</h1>
@@ -84,7 +83,7 @@ const ChatDemo = ({}) => {
   }
 
   const highlight = (text: string) => {
-    return <span style={{color: '#ff6bb2', background: 'rgba(255, 107, 178, 0.3)'}}>{text}</span>;
+    return <span style={{color: "#ff6bb2", background: "rgba(255, 107, 178, 0.3)"}}>{text}</span>;
   }
 
   const scrollToBottom = () => {
@@ -99,7 +98,7 @@ const ChatDemo = ({}) => {
           const {id, name, message, time} = input;
           return (
             <div key={id} className={styles.message}>
-              <div className={styles.profile_picture} style={{background: name === 'Bot' ? '#FF6BB2' : '#FF6B6B'}}/>
+              <div className={styles.profile_picture} style={{background: name === "Bot" ? "#FF6BB2" : "#FF6B6B"}}/>
               <div>
                 <div className={styles.message_top}>
                   <span>{name}</span>
@@ -115,9 +114,9 @@ const ChatDemo = ({}) => {
         <div className={styles.extensions_button}>
           <FontAwesomeIcon className={styles.extensions_button_icon} icon={faPlus}/>
         </div>
-        {stage === 0 && animateTyping('>presets list ', async () => {
+        {stage === 0 && animateTyping(">presets list ", async () => {
           message(input.JIMBO, <p>&gt;presets list</p>);
-          await message(input.BOT, embed('Current Presets (1)', (
+          await message(input.BOT, embed("Current Presets (1)", (
             <div>
               <p>default - This cannot be removed</p>
               <p>test</p>
@@ -126,15 +125,15 @@ const ChatDemo = ({}) => {
           await timeout(500);
           setStage(1);
         })}
-        {stage === 1 && animateTyping('>giveaway', async () => {
+        {stage === 1 && animateTyping(">giveaway", async () => {
           message(input.JIMBO, <p>&gt;giveaway</p>);
-          await message(input.BOT, embed('Smart Giveaways Help', (
+          await message(input.BOT, embed("Smart Giveaways Help", (
             <div>
-              <p style={{fontWeight: 'bold', color: 'white', fontSize: '13px'}}>General Commands</p>
+              <p style={{fontWeight: "bold", color: "white", fontSize: "13px"}}>General Commands</p>
               <p>&gt;entries</p>
-              <p style={{fontWeight: 'bold', color: 'white', fontSize: '13px'}}>Admin Commands</p>
-              <p style={{marginBottom: '5px'}}>&gt;giveaway create</p>
-              <p style={{marginBottom: '5px'}}>&gt;preset</p>
+              <p style={{fontWeight: "bold", color: "white", fontSize: "13px"}}>Admin Commands</p>
+              <p style={{marginBottom: "5px"}}>&gt;giveaway create</p>
+              <p style={{marginBottom: "5px"}}>&gt;preset</p>
               <p>&gt;gban</p>
               <p>&gt;gsban</p>
               <p>&gt;gunban</p>
@@ -143,10 +142,10 @@ const ChatDemo = ({}) => {
           await timeout(500);
           setStage(2);
         })}
-        {stage === 2 && animateTyping('>g create test 1day #giveaways 2 Nitro Giveaway', async () => {
-          await message(input.JIMBO, <p>&gt;g create test 1day {highlight('#giveaways')} 2 Nitro Giveaway</p>);
-          await message(input.BOT, <p>Created your giveaway in {highlight('#giveaways')}</p>);
-          await message(input.BOT, embed('Giveaway: Nitro Giveaway', (
+        {stage === 2 && animateTyping(">g create test 1day #giveaways 2 Nitro Giveaway", async () => {
+          await message(input.JIMBO, <p>&gt;g create test 1day {highlight("#giveaways")} 2 Nitro Giveaway</p>);
+          await message(input.BOT, <p>Created your giveaway in {highlight("#giveaways")}</p>);
+          await message(input.BOT, embed("Giveaway: Nitro Giveaway", (
             <p>Ends in 23 hours 59 minutes with 2 winners</p>
           )));
           await timeout(10000);

@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import styles from './navbar.module.css';
+import styles from "./navbar.module.css";
 
 const NavBar = ({}) => {
   return (
