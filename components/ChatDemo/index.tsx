@@ -27,7 +27,7 @@ const ChatDemo = ({}) => {
 
   const addToDialogue = (input: Input) => {
     setDialogue((oldDialogue) => [...oldDialogue, input]);
-  }
+  };
 
   const animateTyping = (text: string, callback: () => void) => {
     return (
@@ -94,7 +94,7 @@ const ChatDemo = ({}) => {
   return (
     <div className={styles.container}>
       <div className={styles.dialogue} ref={dialogueRef}>
-        {dialogue.map(input => {
+        {dialogue.map((input) => {
           const {id, name, message, time} = input;
           return (
             <div key={id} className={styles.message}>
