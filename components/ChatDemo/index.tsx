@@ -8,7 +8,7 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import styles from './chatdemo.module.css';
 
 const timeout = (delay: number) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, delay);
   });
 };
@@ -43,7 +43,7 @@ const ChatDemo = ({}) => {
 
   enum input {
     BOT,
-    JIMBO
+    JIMBO,
   }
 
   const message = (messenger, message: JSX.Element): void | Promise<void> => {
@@ -53,7 +53,7 @@ const ChatDemo = ({}) => {
         id,
         message,
         name: 'Jimbo',
-        time: '00:06 AM'
+        time: '00:06 AM',
       });
       scrollToBottom();
     } else {
@@ -64,7 +64,7 @@ const ChatDemo = ({}) => {
           id,
           message,
           name: 'Bot',
-          time: '00:06 AM'
+          time: '00:06 AM',
         });
         scrollToBottom();
       });
