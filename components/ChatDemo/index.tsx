@@ -1,15 +1,17 @@
-import { useRef, useState } from 'react';
+import {useRef, useState} from 'react';
 
 import Typing from 'react-typing-animation';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 
 import styles from './chatdemo.module.css';
 
 const timeout = (delay: number) => {
-  return new Promise(resolve => setTimeout(resolve, delay));
-}
+  return new Promise(resolve => {
+    setTimeout(resolve, delay);
+  });
+};
 
 interface Input {
   id: number;
@@ -34,7 +36,7 @@ const ChatDemo = ({}) => {
         <div className={styles.input_text_container}>
           <div className={styles.input_text}>{text}</div>
         </div>
-        <Typing.Reset delay={200} />
+        <Typing.Reset delay={200}/>
       </Typing>
     );
   }
@@ -44,14 +46,14 @@ const ChatDemo = ({}) => {
     BOT: 2,
   }
 
-  const message = (input, message: JSX.Element) => {
+  const message = (input, message: JSX.Element): void | Promise<void> => {
     const id = Math.random() * 1000;
     if (input === 1) {
       addToDialogue({
         id,
-        name: "Jimbo",
-        message: message,
-        time: "00:06 AM"
+        name: 'Jimbo',
+        message,
+        time: '00:06 AM'
       });
       scrollToBottom();
     } else {
@@ -59,10 +61,10 @@ const ChatDemo = ({}) => {
       return timeout(1500).then(() => {
         setWaiting(false);
         addToDialogue({
-            id,
-            name: "Bot",
-            message,
-            time: "00:06 AM"
+          id,
+          name: 'Bot',
+          message,
+          time: '00:06 AM'
         });
         scrollToBottom();
       });
@@ -71,8 +73,8 @@ const ChatDemo = ({}) => {
 
   const embed = (title: string, children: JSX.Element): JSX.Element => {
     return (
-      <div className={styles.message_bottom + " " + styles.embed}>
-        <div className={styles.embed_bar} />
+      <div className={styles.message_bottom + ' ' + styles.embed}>
+        <div className={styles.embed_bar}/>
         <div className={styles.embed_content}>
           <h1>{title}</h1>
           {children}
@@ -86,7 +88,7 @@ const ChatDemo = ({}) => {
   }
 
   const scrollToBottom = () => {
-    const { current } = dialogueRef;
+    const {current} = dialogueRef;
     current.scrollTop = current.scrollHeight;
   }
 
@@ -95,66 +97,68 @@ const ChatDemo = ({}) => {
       <div className={styles.dialogue} ref={dialogueRef}>
         {dialogue.map(input => {
           const {id, name, message, time} = input;
-          return <div key={id} className={styles.message} > 
-            <div className={styles.profile_picture} style={{background: name === "Bot" ? "#FF6BB2" : "#FF6B6B"}} />
-            <div>
-              <div className={styles.message_top}>
-                <span>{name}</span>
-                <span>Today at {time}</span>
+          return (
+            <div key={id} className={styles.message}>
+              <div className={styles.profile_picture} style={{background: name === 'Bot' ? '#FF6BB2' : '#FF6B6B'}}/>
+              <div>
+                <div className={styles.message_top}>
+                  <span>{name}</span>
+                  <span>Today at {time}</span>
+                </div>
+                <div className={styles.message_bottom}>{message}</div>
               </div>
-              <div className={styles.message_bottom}>{message}</div>
             </div>
-          </div>
+          );
         })}
       </div>
       <div className={styles.input}>
         <div className={styles.extensions_button}>
-          <FontAwesomeIcon className={styles.extensions_button_icon} icon={faPlus} />
+          <FontAwesomeIcon className={styles.extensions_button_icon} icon={faPlus}/>
         </div>
-        {stage === 0 && animateTyping(">presets list ", async () => {
-            message(input.JIMBO, <p>&gt;presets list</p>);
-            await message(input.BOT, embed("Current Presets (1)", (
-              <div>
-                <p>default - This cannot be removed</p>
-                <p>test</p>
-              </div>
-            )));
-            await timeout(500);
-            setStage(1);
+        {stage === 0 && animateTyping('>presets list ', async () => {
+          message(input.JIMBO, <p>&gt;presets list</p>);
+          await message(input.BOT, embed('Current Presets (1)', (
+            <div>
+              <p>default - This cannot be removed</p>
+              <p>test</p>
+            </div>
+          )));
+          await timeout(500);
+          setStage(1);
         })}
-        {stage === 1 && animateTyping(">giveaway", async () => {
-            message(input.JIMBO, <p>&gt;giveaway</p>);
-            await message(input.BOT, embed("Smart Giveaways Help", (
-              <div>
-                <p style={{fontWeight: 'bold', color: 'white', fontSize: '13px'}}>General Commands</p>
-                <p>&gt;entries</p>
-                <p style={{fontWeight: 'bold', color: 'white', fontSize: '13px'}}>Admin Commands</p>
-                <p style={{marginBottom: '5px'}}>&gt;giveaway create</p>
-                <p style={{marginBottom: '5px'}}>&gt;preset</p>
-                <p>&gt;gban</p>
-                <p>&gt;gsban</p>
-                <p>&gt;gunban</p>
-              </div>
-            )));
-            await timeout(500);
-            setStage(2);
+        {stage === 1 && animateTyping('>giveaway', async () => {
+          message(input.JIMBO, <p>&gt;giveaway</p>);
+          await message(input.BOT, embed('Smart Giveaways Help', (
+            <div>
+              <p style={{fontWeight: 'bold', color: 'white', fontSize: '13px'}}>General Commands</p>
+              <p>&gt;entries</p>
+              <p style={{fontWeight: 'bold', color: 'white', fontSize: '13px'}}>Admin Commands</p>
+              <p style={{marginBottom: '5px'}}>&gt;giveaway create</p>
+              <p style={{marginBottom: '5px'}}>&gt;preset</p>
+              <p>&gt;gban</p>
+              <p>&gt;gsban</p>
+              <p>&gt;gunban</p>
+            </div>
+          )));
+          await timeout(500);
+          setStage(2);
         })}
-        {stage === 2 && animateTyping(">g create test 1day #giveaways 2 Nitro Giveaway", async () => {
-            await message(input.JIMBO, <p>&gt;g create test 1day {highlight("#giveaways")} 2 Nitro Giveaway</p>);
-            await message(input.BOT, <p>Created your giveaway in {highlight("#giveaways")}</p>);
-            await message(input.BOT, embed("Giveaway: Nitro Giveaway", (
-              <p>Ends in 23 hours 59 minutes with 2 winners</p>
-            )));
-            await timeout(10000);
-            setStage(0);
-            setDialogue([]);
+        {stage === 2 && animateTyping('>g create test 1day #giveaways 2 Nitro Giveaway', async () => {
+          await message(input.JIMBO, <p>&gt;g create test 1day {highlight('#giveaways')} 2 Nitro Giveaway</p>);
+          await message(input.BOT, <p>Created your giveaway in {highlight('#giveaways')}</p>);
+          await message(input.BOT, embed('Giveaway: Nitro Giveaway', (
+            <p>Ends in 23 hours 59 minutes with 2 winners</p>
+          )));
+          await timeout(10000);
+          setStage(0);
+          setDialogue([]);
         })}
       </div>
       {waiting && (
         <div className={styles.waiting}>
-          <div className={styles.waiting_dot} />
-          <div className={styles.waiting_dot} />
-          <div className={styles.waiting_dot} />
+          <div className={styles.waiting_dot}/>
+          <div className={styles.waiting_dot}/>
+          <div className={styles.waiting_dot}/>
           <p><span>Bot</span> is typing...</p>
         </div>
       )}
