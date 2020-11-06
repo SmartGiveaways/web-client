@@ -41,18 +41,18 @@ const ChatDemo = ({}) => {
     );
   }
 
-  const input = {
-    JIMBO: 1,
-    BOT: 2,
+  enum input {
+    BOT,
+    JIMBO
   }
 
-  const message = (input, message: JSX.Element): void | Promise<void> => {
+  const message = (messenger, message: JSX.Element): void | Promise<void> => {
     const id = Math.random() * 1000;
-    if (input === 1) {
+    if (messenger === input.BOT) {
       addToDialogue({
         id,
-        name: 'Jimbo',
         message,
+        name: 'Jimbo',
         time: '00:06 AM'
       });
       scrollToBottom();
@@ -62,8 +62,8 @@ const ChatDemo = ({}) => {
         setWaiting(false);
         addToDialogue({
           id,
-          name: 'Bot',
           message,
+          name: 'Bot',
           time: '00:06 AM'
         });
         scrollToBottom();

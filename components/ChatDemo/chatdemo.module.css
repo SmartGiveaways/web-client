@@ -72,6 +72,25 @@
   background: #776e6e;
 }
 
+.waiting {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 95%;
+  left: 10%;
+  margin-left: 5px;
+  color: white;
+}
+
+.waiting p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.waiting span {
+  font-weight: bold;
+}
+
 .message_top span:first-child {
   font-size: 16px;
   color: white;
@@ -125,25 +144,6 @@
   background: #00afd6;
 }
 
-.waiting {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 95%;
-  left: 10%;
-  margin-left: 5px;
-  color: white;
-}
-
-.waiting p {
-  margin: 0;
-  font-size: 13px;
-}
-
-.waiting span {
-  font-weight: bold;
-}
-
 .waiting_dot {
   width: 6px;
   height: 6px;
@@ -170,9 +170,11 @@
   0% {
     opacity: 0.2;
   }
+
   50% {
     opacity: 0.8;
   }
+
   100% {
     opacity: 0.2;
   }
