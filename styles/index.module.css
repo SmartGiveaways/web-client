@@ -16,6 +16,8 @@
 
 .left_container p {
   margin: 60px 0 60px 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
   font-size: 22px;
   color: #1c1c1c;
 }
@@ -23,8 +25,9 @@
 .title {
   display: flex;
   flex-direction: column;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
   font-size: 96px;
-  font-weight: 600;
   line-height: 90px;
 }
 
@@ -43,6 +46,14 @@
   width: 260px;
   height: 50px;
   border-radius: 10px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
   color: white;
   background: #1c1c1c;
+}
+
+.get_started:hover {
+  cursor: pointer;
+  opacity: 0.85;
 }
