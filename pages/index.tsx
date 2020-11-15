@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from 'next/link';
 
 import NavBar from "../components/NavBar";
 import ChatDemo from "../components/ChatDemo";
@@ -25,7 +26,7 @@ const Index = () => {
             <span>Giveaways</span>
           </div>
           <p>Take back control of your giveaways and reward those who truly deserve it.</p>
-          <div className={styles.get_started}>Get Started</div>
+          <Link href="/invite"><div className={styles.get_started}>Get Started</div></Link>
         </div>
         <div className={styles.right_container}>
           <ChatDemo />

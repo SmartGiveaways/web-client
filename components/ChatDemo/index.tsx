@@ -47,7 +47,7 @@ const ChatDemo = ({}) => {
 
   const message = (messenger, message: JSX.Element): void | Promise<void> => {
     const id = Math.random() * 1000;
-    if (messenger === input.BOT) {
+    if (messenger === input.JIMBO) {
       addToDialogue({
         id,
         message,
@@ -98,7 +98,7 @@ const ChatDemo = ({}) => {
           const {id, name, message, time} = input;
           return (
             <div key={id} className={styles.message}>
-              <div className={styles.profile_picture} style={{background: name === "Bot" ? "#FF6BB2" : "#FF6B6B"}}/>
+              <div className={styles.profile_picture} style={{background: name === "Bot" ? "url(/icon-50.png)" : "#FF6B6B"}}/>
               <div>
                 <div className={styles.message_top}>
                   <span>{name}</span>
@@ -125,24 +125,37 @@ const ChatDemo = ({}) => {
           await timeout(500);
           setStage(1);
         })}
-        {stage === 1 && animateTyping(">giveaway", async () => {
-          message(input.JIMBO, <p>&gt;giveaway</p>);
-          await message(input.BOT, embed("Smart Giveaways Help", (
+        {stage === 1 && animateTyping(">ghelp", async () => {
+          message(input.JIMBO, <p>&gt;ghelp</p>);
+          await message(input.BOT, embed("SmartGiveaways Help", (
             <div>
               <p style={{fontWeight: "bold", color: "white", fontSize: "13px"}}>General Commands</p>
               <p>&gt;entries</p>
               <p style={{fontWeight: "bold", color: "white", fontSize: "13px"}}>Admin Commands</p>
-              <p style={{marginBottom: "5px"}}>&gt;giveaway create</p>
+              <p style={{marginBottom: "5px"}}>&gt;giveaway</p>
               <p style={{marginBottom: "5px"}}>&gt;preset</p>
               <p>&gt;gban</p>
               <p>&gt;gsban</p>
               <p>&gt;gunban</p>
             </div>
           )));
+          await timeout(400);
+          setStage(2)
+        })} 
+        {stage === 2 && animateTyping(">giveaway", async () => {
+          message(input.JIMBO, <p>&gt;giveaway</p>);
+          await message(input.BOT, embed("Giveaway Command Help", (
+            <div>
+              <p>&gt;giveaway list</p>
+              <p>&gt;giveaway create</p>
+              <p>&gt;giveaway reroll</p>
+              <p style={{fontSize: "9px"}}>Do &gt;ghelp for all commands.</p>
+            </div>
+          )));
           await timeout(500);
-          setStage(2);
+          setStage(3);
         })}
-        {stage === 2 && animateTyping(">g create test 1day #giveaways 2 Nitro Giveaway", async () => {
+        {stage === 3 && animateTyping(">g create test 1day #giveaways 2 Nitro Giveaway", async () => {
           await message(input.JIMBO, <p>&gt;g create test 1day {highlight("#giveaways")} 2 Nitro Giveaway</p>);
           await message(input.BOT, <p>Created your giveaway in {highlight("#giveaways")}</p>);
           await message(input.BOT, embed("Giveaway: Nitro Giveaway", (
