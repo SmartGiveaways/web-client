@@ -152,7 +152,7 @@
   border-radius: 50px;
   opacity: 0;
   background: white;
-  animation: loadingFade 1s infinite;
+  animation: loading-fade 1s infinite;
 }
 
 .waiting_dot:nth-child(1) {
@@ -167,7 +167,30 @@
   animation-delay: 0.4s;
 }
 
-@keyframes loadingFade {
+.reaction {
+  display: flex;
+  align-items: center;
+  width: 45px;
+  height: 22px;
+  padding: 5px;
+  border-radius: 4px;
+  background: rgba(102, 101, 101, 0.5);
+  animation: popper 0.5s;
+}
+
+.reaction img {
+  width: 15px;
+  height: 15px;
+  object-fit: fill;
+}
+
+.reaction span {
+  font-size: 15px;
+  color: #6d6c6c;
+  margin-left: 10px;
+}
+
+@keyframes loading-fade {
   0% {
     opacity: 0.2;
   }
@@ -178,5 +201,16 @@
 
   100% {
     opacity: 0.2;
+  }
+}
+
+@keyframes popper {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

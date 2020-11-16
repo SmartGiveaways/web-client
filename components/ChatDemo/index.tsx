@@ -70,20 +70,26 @@ const ChatDemo = ({}) => {
     }
   }
 
-  const embed = (title: string, children: JSX.Element): JSX.Element => {
+  const embed = (title: string, children: JSX.Element, reaction?: boolean): JSX.Element => {
     return (
-      <div className={styles.message_bottom + " " + styles.embed}>
-        <div className={styles.embed_bar}/>
-        <div className={styles.embed_content}>
-          <h1>{title}</h1>
-          {children}
+      <div>
+        <div className={styles.message_bottom + " " + styles.embed} style={{margin: reaction ? "0 0 10px 0" : ""}}>
+          <div className={styles.embed_bar}/>
+          <div className={styles.embed_content}>
+            <h1>{title}</h1>
+            {children}
+          </div>
         </div>
+        {reaction ? <div className={styles.reaction}>
+          <img src="/party-popper.png" alt="pop" />
+          <span>1</span>
+        </div> : <></>}
       </div>
     );
   }
 
   const highlight = (text: string) => {
-    return <span style={{color: "#ff6bb2", background: "rgba(255, 107, 178, 0.3)"}}>{text}</span>;
+    return <span style={{color: "#ff6bb2", background: "rgba(255, 107, 178, 0.2)", padding: "1px"}}>{text}</span>;
   }
 
   const scrollToBottom = () => {
@@ -98,7 +104,7 @@ const ChatDemo = ({}) => {
           const {id, name, message, time} = input;
           return (
             <div key={id} className={styles.message}>
-              <div className={styles.profile_picture} style={{background: name === "Bot" ? "url(/icon-50.png)" : "#FF6B6B"}}/>
+              <div className={styles.profile_picture} style={{background: name === "Bot" ? "url(/icon-50.png)" : "url(/jimbo.png)"}}/>
               <div>
                 <div className={styles.message_top}>
                   <span>{name}</span>
@@ -160,8 +166,8 @@ const ChatDemo = ({}) => {
           await message(input.BOT, <p>Created your giveaway in {highlight("#giveaways")}</p>);
           await message(input.BOT, embed("Giveaway: Nitro Giveaway", (
             <p>Ends in 23 hours 59 minutes with 2 winners</p>
-          )));
-          await timeout(10000);
+          ), true));
+          await timeout(100000);
           setStage(0);
           setDialogue([]);
         })}
