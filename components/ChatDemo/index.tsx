@@ -146,7 +146,7 @@ const ChatDemo = ({}) => {
             </div>
           )));
           await timeout(400);
-          setStage(2)
+          setStage(2);
         })} 
         {stage === 2 && animateTyping(">giveaway", async () => {
           message(input.JIMBO, <p>&gt;giveaway</p>);

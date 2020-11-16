@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Link from 'next/link';
+import Link from "next/link";
 
 import NavBar from "../components/NavBar";
 import ChatDemo from "../components/ChatDemo";
