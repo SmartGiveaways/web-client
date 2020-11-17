@@ -169,7 +169,7 @@ const ChatDemo = ({}) => {
           await message(input.BOT, embed("Giveaway: Nitro Giveaway", (
             <p>Ends in 23 hours 59 minutes with 2 winners</p>
           ), true));
-          await timeout(100000);
+          await timeout(10000);
           setStage(0);
           setDialogue([]);
         })}
