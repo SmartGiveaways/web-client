@@ -98,7 +98,7 @@
 }
 
 .message_top span:last-child {
-  font-size: 14px;
+  font-size: 12px;
   margin-left: 5px;
   color: #776e6e;
 }
@@ -136,7 +136,7 @@
 .embed_content p {
   font-size: 14px;
   padding: 0;
-  margin: 10px 0 0 0;
+  margin: 5px 0 0 0;
 }
 
 .embed_bar {

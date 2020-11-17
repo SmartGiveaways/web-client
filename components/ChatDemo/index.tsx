@@ -38,7 +38,7 @@ const ChatDemo = ({}) => {
         <Typing.Reset delay={200}/>
       </Typing>
     );
-  }
+  };
 
   enum input {
     BOT,
@@ -68,7 +68,7 @@ const ChatDemo = ({}) => {
         scrollToBottom();
       });
     }
-  }
+  };
 
   const embed = (title: string, children: JSX.Element, reaction?: boolean): JSX.Element => {
     return (
@@ -105,7 +105,7 @@ const ChatDemo = ({}) => {
           return (
             <div key={id} className={styles.message}>
               <div className={styles.profile_picture}
-                   style={{background: name === "SmartGiveaways" ? "url(/icon-50.png)" : "url(/jimbo.png)"}}/>
+                   style={{background: `url(${name === "SmartGiveaways" ? "icon-50.png" : "jimbo.png"})`}}/>
               <div>
                 <div className={styles.message_top}>
                   <span>{name}</span>
